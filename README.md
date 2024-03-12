@@ -1,1 +1,1 @@
-Creating Neural Net in pure Python
+Creating a Neural Net in pure Python
