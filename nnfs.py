@@ -16,6 +16,12 @@ weights = [[0.2, 0.8, -0.5, 1],
 
 biases = [2, 3, 0.5]
 
-output = np.dot(inputs, np.array(weights).T) + biases
+weights2 = [[0.1, -0.14, 0.5],
+           [-0.5, 0.12, -0.33],
+           [-0.44, 0.73, -0.13]]
 
-print(output)
+biases2 = [-1, 2, -0.5]
+
+layer1_output = np.dot(inputs, np.array(weights).T) + biases
+layer2_output = np.dot(layer1_output, np.array(weights2).T) + biases2
+print(layer2_output)
