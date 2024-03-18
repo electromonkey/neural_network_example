@@ -40,17 +40,15 @@ class Activation_Softmax:
         self.output = probabilities
 
 
-dense1 = Layer_Dense(2,3)
+dense1 = Layer_Dense(len(X[0]),3)
 activation1 = Activation_ReLU()
 dense1.forward(X)
 
 dense2 = Layer_Dense(len(dense1.output[0]), 3)
 activation2 = Activation_Softmax()
 
-
 activation1.forward(dense1.output)
 dense2.forward(activation1.output)
 activation2.forward(dense2.output)
-
 
 print(activation2.output[:5])
