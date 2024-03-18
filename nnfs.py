@@ -1,9 +1,7 @@
-
 import numpy as np
 import matplotlib as plt
 
 np.random.seed(0)
-
 
 #create sample data set
 
@@ -34,12 +32,25 @@ class Activation_ReLU:
         self.output = np.maximum(0, inputs)
 
 
-layer1 = Layer_Dense(len(X[0]),5)
+class Activation_Softmax:
+    def forward(self, inputs):
+        exp_values = np.exp(inputs - np.max(inputs, axis=1, keepdims=True))
+        probabilities = exp_values / np.sum(exp_values, axis=1, keepdims=True)
+
+        self.output = probabilities
+
+
+dense1 = Layer_Dense(2,3)
 activation1 = Activation_ReLU()
+dense1.forward(X)
 
-layer1.forward(X)
+dense2 = Layer_Dense(len(dense1.output[0]), 3)
+activation2 = Activation_Softmax()
 
-activation1.forward(layer1.output)
 
-print(activation1.output)
+activation1.forward(dense1.output)
+dense2.forward(activation1.output)
+activation2.forward(dense2.output)
 
+
+print(activation2.output[:5])
